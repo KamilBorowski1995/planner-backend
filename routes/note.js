@@ -1,20 +1,27 @@
 const router = require("express").Router();
 const nanoid = require("nanoid");
+const jwt = require("jsonwebtoken");
 
 const User = require("../model/User");
 
 router.post("/add", async (req, res) => {
-  const { _id, date, note } = req.body;
+  const { date, note } = req.body;
 
-  if (!_id || !date || !note)
+  console.log(date);
+  console.log(note);
+
+  if (!req.cookies.LOGIN_INFO) return res.status(400).send("UserErr");
+  if (!date || !note)
     return res.status(400).send("Prosze uzupełnić wszystkie pola");
+
+  const decodeToken = jwt.decode(req.cookies.LOGIN_INFO);
+
+  const _id = decodeToken._id;
+
+  console.log(_id);
 
   const user = await User.findOne({ _id: _id });
   if (!user) return res.status(400).send("Błędne dane użytkownika");
-
-  const nazwisko = "no elo moje n";
-
-  // await user.updateOne({ $set: { name: "admin" } });
 
   const newID = await nanoid.nanoid();
 

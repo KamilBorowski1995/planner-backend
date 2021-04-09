@@ -55,7 +55,7 @@ router.post("/login", async (req, res) => {
       httpOnly: true,
       // secure: true,
     })
-    .send("cooki wysłane");
+    .send("Accepted");
 });
 
 module.exports = router;
