@@ -3,8 +3,10 @@ const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 
 const authRoute = require("./routes/auth");
+const noteRoute = require("./routes/note");
 
 dotenv.config();
 
@@ -19,8 +21,10 @@ mongoose.connect(
 
 app.use(express.json());
 app.use(cors({ origin: true, credentials: true }));
+app.use(cookieParser());
 
 app.use("/api/user", authRoute);
+app.use("/api/note", noteRoute);
 
 const PORT = 5000;
 

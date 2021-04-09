@@ -44,7 +44,18 @@ router.post("/login", async (req, res) => {
   const validPass = await bcrypt.compare(password, user.password);
   if (!validPass) return res.status(400).send("Błędny login lub hasło");
 
-  res.send(user._id);
+  const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
+
+  res
+    .status(202)
+
+    .cookie("LOGIN_INFO", token, {
+      path: "/",
+
+      httpOnly: true,
+      // secure: true,
+    })
+    .send("cooki wysłane");
 });
 
 module.exports = router;
