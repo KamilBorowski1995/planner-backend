@@ -16,7 +16,13 @@ mongoose.connect(
     useNewUrlParser: true,
     useUnifiedTopology: true,
   },
-  () => console.log("Zalogowano do bazy danych")
+  (err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("Zalogowano do bazy danych");
+    }
+  }
 );
 
 app.use(express.json());
