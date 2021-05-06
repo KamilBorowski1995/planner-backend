@@ -52,7 +52,7 @@ router.post("/edit", verifityToken, async (req, res) => {
 
   await user.set({ note: [...newArr, newNote] }).save();
 
-  res.send("Notatka dodana");
+  res.send("Notatka zmieniona");
 });
 
 router.delete("/delete", verifityToken, async (req, res) => {
