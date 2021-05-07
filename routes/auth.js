@@ -62,7 +62,7 @@ router.post("/login", async (req, res) => {
       httpOnly: true,
       secure: true,
     })
-    .send("Accepted");
+    .send(token);
 });
 
 module.exports = router;
