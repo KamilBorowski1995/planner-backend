@@ -37,5 +37,5 @@ app.use("/api/note", noteRoute);
 app.use("/", startRoute);
 
 app.listen(process.env.PORT, () =>
-  console.log(`Serwer uruchomiony na porcie: ${PORT}`)
+  console.log(`Serwer uruchomiony na porcie: ${process.env.PORT}`)
 );
