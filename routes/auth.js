@@ -61,7 +61,7 @@ router.post("/login", async (req, res) => {
       path: "/",
       httpOnly: true,
       secure: true,
-      sameSite = 'none'
+      sameSite: "None",
     })
     .send("accepted");
 });
