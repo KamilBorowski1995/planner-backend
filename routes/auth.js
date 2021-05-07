@@ -53,7 +53,7 @@ router.post("/login", async (req, res) => {
       .send("Sprawdź, czy adres e-mail i hasło są poprawne");
 
   const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
-  console.log(token);
+
   res
     .status(202)
 
@@ -61,8 +61,9 @@ router.post("/login", async (req, res) => {
       path: "/",
       httpOnly: true,
       secure: true,
+      sameSite = 'none'
     })
-    .send(token);
+    .send("accepted");
 });
 
 module.exports = router;
