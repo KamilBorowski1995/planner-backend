@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 
 const authRoute = require("./routes/auth");
 const noteRoute = require("./routes/note");
+const startRoute = require("./routes/start");
 
 dotenv.config();
 
@@ -31,6 +32,7 @@ app.use(cookieParser());
 
 app.use("/api/user", authRoute);
 app.use("/api/note", noteRoute);
+app.use("/", startRoute);
 
 const PORT = 5000;
 
