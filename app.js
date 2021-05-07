@@ -11,8 +11,10 @@ const startRoute = require("./routes/start");
 
 dotenv.config();
 
+const env = process.env.DB_CONNECT.toString();
+
 mongoose.connect(
-  process.env.DB_CONNECT.toString(),
+  env,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
