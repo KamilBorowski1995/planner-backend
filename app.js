@@ -36,6 +36,6 @@ app.use("/api/user", authRoute);
 app.use("/api/note", noteRoute);
 app.use("/", startRoute);
 
-const PORT = 5000;
-
-app.listen(PORT, () => console.log(`Serwer uruchomiony na porcie: ${PORT}`));
+app.listen(process.env.PORT, () =>
+  console.log(`Serwer uruchomiony na porcie: ${PORT}`)
+);
