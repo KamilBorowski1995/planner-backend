@@ -22,7 +22,7 @@ router.post("/register", async (req, res) => {
 
   try {
     saveUser = await user.save();
-    res.send(saveUser._id);
+    res.send("success");
   } catch (error) {
     res.status(400).send(error);
   }
@@ -54,16 +54,24 @@ router.post("/login", async (req, res) => {
 
   const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
 
-  res
-    .status(202)
+  // res
+  //   .status(202)
 
-    .cookie("LOGIN_INFO", token, {
-      path: "/",
-      httpOnly: true,
-      secure: true,
-      sameSite: "None",
-    })
-    .send("accepted");
+  //   .cookie("LOGIN_INFO", token, {
+  //     path: "/",
+  //     httpOnly: true,
+  //     secure: true,
+  //     sameSite: "None",
+  //   })
+  //   .send("accepted");
+
+  res.header("auth-token", token).send({
+    token,
+  });
+});
+
+router.get("/veryfToken", verify, async (req, res) => {
+  res.send(req.user);
 });
 
 module.exports = router;
